@@ -1,0 +1,186 @@
+{
+  "copied_at": "2026-11-05T02:38:33.606Z",
+  "note": "CSS/JS source-map directives removed; Instrument Sans CSS uses local font URLs. Vendor license notices retained.",
+  "assets": [
+    {
+      "source": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+      "file": "public/vendor/bootstrap/5.3.3/css/bootstrap.min.css",
+      "bytes": 232758,
+      "sha256": "26db49828d6701fcfce37a96da6ec3f0ed481abae49c8c9969a575b064413cad"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
+      "file": "public/vendor/bootstrap/5.3.3/js/bootstrap.bundle.min.js",
+      "bytes": 80673,
+      "sha256": "073254afbfc06331b8b548b7fc0532b4ffe2cfdd588368dcc338e7abd50810e1"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/LICENSE",
+      "file": "public/vendor/bootstrap/5.3.3/LICENSE",
+      "bytes": 1093,
+      "sha256": "8c14611ae41ac6fd543c13349f22188eb12c69b3e59105c5eca3925a8e4eca3e"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css",
+      "file": "public/vendor/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css",
+      "bytes": 85875,
+      "sha256": "f643d6fe7e679f9de3e16311600c5ef5cd6b098f7a3a8828fcc29255d2b33e62"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2",
+      "file": "public/vendor/bootstrap-icons/1.11.3/font/fonts/bootstrap-icons.woff2",
+      "bytes": 130396,
+      "sha256": "476adf42b40325098fcfa8b36ab3e769186bb4f6ce6a249753e2e1a9c22bf99e"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff",
+      "file": "public/vendor/bootstrap-icons/1.11.3/font/fonts/bootstrap-icons.woff",
+      "bytes": 176032,
+      "sha256": "bb1de989b83970f6f4e54de1cd974c5cba55b73582da5e1b225a6d0edf029483"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/LICENSE",
+      "file": "public/vendor/bootstrap-icons/1.11.3/LICENSE",
+      "bytes": 1093,
+      "sha256": "0fb3e11bd57e896c5a512afd64864d28a37de45d19835016c87ca1ad19ead969"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js",
+      "file": "public/vendor/chart.js/4.4.1/chart.umd.min.js",
+      "bytes": 205362,
+      "sha256": "160b7f8fbf16fe996508e5aaa4c4d82d9872472739280af8ca6cbdc68febc523"
+    },
+    {
+      "source": "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/LICENSE.md",
+      "file": "public/vendor/chart.js/4.4.1/LICENSE.md",
+      "bytes": 1093,
+      "sha256": "5a0877ad6d818529be4f33009d0942cdf7e2ed7656156f4aba7308459a546030"
+    },
+    {
+      "source": "https://fonts.bunny.net/css?family=instrument-sans:400,500,600",
+      "file": "public/vendor/instrument-sans/instrument-sans.css",
+      "bytes": 2688,
+      "sha256": "4e064f711658da8611e8c499e1353107f23a591e56ea97225d27006c2b2b195c"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/instrumentsans/OFL.txt",
+      "file": "public/vendor/instrument-sans/OFL.txt",
+      "bytes": 4403,
+      "sha256": "9e27a72ed30eb49a08678f6a5d6ed98ec7ba5368f541637ee0683ec9134ef966"
+    },
+    {
+      "source": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=85&fm=jpg",
+      "file": "public/images/dashboard/student-hero.jpg",
+      "bytes": 223082,
+      "sha256": "8e0d491f212c480e3974f749469f67fd3e9510d76759cbbf50cdd676239d8522"
+    },
+    {
+      "source": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=82&fm=jpg",
+      "file": "public/images/dashboard/admin-hero.jpg",
+      "bytes": 486296,
+      "sha256": "85ea00af960e4af755c885c69a5e9c51d24d391041b15c4b41f6811406a8ff7a"
+    },
+    {
+      "source": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=82&fm=jpg",
+      "file": "public/images/dashboard/staff-hero.jpg",
+      "bytes": 679986,
+      "sha256": "8bd9533699912f2f9f5d2796b7145ccd001712adaaaf5295412a5f88f47f4999"
+    },
+    {
+      "source": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80&fm=jpg",
+      "file": "public/images/dashboard/scholarship-merit.jpg",
+      "bytes": 53087,
+      "sha256": "47b56dee8bd2b77554b7e122d6ff2acabc5503137371a270527d3add6c8fc444"
+    },
+    {
+      "source": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=900&q=80&fm=jpg",
+      "file": "public/images/dashboard/scholarship-need-based.jpg",
+      "bytes": 108556,
+      "sha256": "22087e508afe4c00a773cebb4c989312594f5b6a99b369462c2e12bb68a7d640"
+    },
+    {
+      "source": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80&fm=jpg",
+      "file": "public/images/dashboard/scholarship-athletic.jpg",
+      "bytes": 106960,
+      "sha256": "71f36e16f089dabaada14c05c10cc4f1acfc988ce3c53bdc59e0706aa6988938"
+    },
+    {
+      "source": "https://images.unsplash.com/photo-1519452575417-564c1401ecc0?auto=format&fit=crop&w=900&q=80&fm=jpg",
+      "file": "public/images/dashboard/scholarship-default.jpg",
+      "bytes": 68724,
+      "sha256": "1b421358dc551959999ba460b6214a816f7770a16d0475570ca062ed988162b7"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-400-normal.woff2",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-400-normal.woff2",
+      "bytes": 16860,
+      "sha256": "9a91efaa3599a6ef01b2f49e9ec670e3a2f39baeef09c73198f1052cf3bb0850"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-400-normal.woff",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-400-normal.woff",
+      "bytes": 21240,
+      "sha256": "797bd3eaa70edbd4757650ab44dad75fbfbfdf18bacedb4b71022c04621d30ad"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-ext-400-normal.woff2",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-ext-400-normal.woff2",
+      "bytes": 6856,
+      "sha256": "a7bedd76b981e6cc8dd4cf918d7d22f4a1833af2f337798b317030e9e1d9b615"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-ext-400-normal.woff",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-ext-400-normal.woff",
+      "bytes": 8960,
+      "sha256": "70972e3355cd7613dd08b9fb8fb07d4a88092722897f0d8aa076f3a8d40dbaa6"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-500-normal.woff2",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-500-normal.woff2",
+      "bytes": 17232,
+      "sha256": "9d3547da16d950d12a677c772a3ff9b69846e60e7dcd1b5efd540993f7286532"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-500-normal.woff",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-500-normal.woff",
+      "bytes": 21652,
+      "sha256": "bd6a8dc8b0dc0cced0c32d3eda93f0e0e82c58ddefea8b53b3307b0c48da3089"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-ext-500-normal.woff2",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-ext-500-normal.woff2",
+      "bytes": 6980,
+      "sha256": "37de060fbb3d90e059573c16e2a1384218d898aa6deb300b3b3498248123c64d"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-ext-500-normal.woff",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-ext-500-normal.woff",
+      "bytes": 9068,
+      "sha256": "b60c2c60473b912b96618d82bdad931efb5605a2d5e3c54c79e9df7b1dba6d56"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-600-normal.woff2",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-600-normal.woff2",
+      "bytes": 17408,
+      "sha256": "efb770916eda95a0e31d80cccde9651d4e8617010b21220e9f227c4820d675da"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-600-normal.woff",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-600-normal.woff",
+      "bytes": 21676,
+      "sha256": "9b4ce1f2b26be7cb087fd87d6f99a202136292ec820af75bd38ab9e53895cf28"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-ext-600-normal.woff2",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-ext-600-normal.woff2",
+      "bytes": 6948,
+      "sha256": "ed2412451550a2da085eb856e0d0277a84a6194ac237a953e6e2c9d690ee10e4"
+    },
+    {
+      "source": "https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-ext-600-normal.woff",
+      "file": "public/vendor/instrument-sans/instrument-sans-latin-ext-600-normal.woff",
+      "bytes": 9104,
+      "sha256": "b17c67a2824f9c3271867e5c9313de0b6a897d1434dec12e181ff18e2e8d68f8"
+    }
+  ]
+}

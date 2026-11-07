@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: ADFC ScholarLink API
+  version: 1.0.0
+  description: Versioned Sanctum API for the browser-based ADFC scholarship system.
+servers:
+  - url: http://localhost:8080/api/v1
+    description: XAMPP/local development
+security:
+  - bearerAuth: []
+paths:
+  /logout:
+    post: { summary: Revoke current API token, responses: { '200': { description: Logged out } } }
+  /notifications/read-all:
+    post: { summary: Mark own notifications read, responses: { '200': { description: Updated } } }
+  /staff/applications/{id}:
+    get: { summary: Assigned application detail, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Application resource }, '403': { $ref: '#/components/responses/Forbidden' } } }
+  /admin/scholarships:
+    post: { summary: Create program with configurable requirements, responses: { '201': { description: Program created }, '422': { $ref: '#/components/responses/ValidationError' } } }
+  /admin/scholarships/{id}:
+    put: { summary: Edit or close or archive program, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Program saved } } }
+  /admin/scholarships/{id}/publish:
+    post: { summary: Publish program, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Published } } }
+  /admin/applications:
+    get: { summary: Monitor all applications with filters, responses: { '200': { description: Paginated application resources } } }
+  /student/applications/{id}/documents/{documentId}:
+    delete:
+      summary: Remove a document only in an allowed workflow state
+      parameters:
+        - { $ref: '#/components/parameters/id' }
+        - { name: documentId, in: path, required: true, schema: { type: integer } }
+      responses: { '200': { description: Removed from active checklist }, '403': { $ref: '#/components/responses/Forbidden' } }
+  /register:
+    post:
+      security: []
+      summary: Register a student account
+      requestBody:
+        required: true
+        content:
+          application/json: { schema: { $ref: '#/components/schemas/RegisterRequest' } }
+      responses: { '201': { description: Created }, '422': { $ref: '#/components/responses/ValidationError' } }
+  /login:
+    post:
+      security: []
+      summary: Issue a Sanctum token
+      responses: { '200': { description: Token issued }, '422': { $ref: '#/components/responses/ValidationError' } }
+  /forgot-password:
+    post:
+      security: []
+      summary: Request a password reset link
+      responses: { '200': { description: Generic reset response } }
+  /reset-password:
+    post:
+      security: []
+      summary: Reset password using a broker token
+      responses: { '200': { description: Password reset }, '422': { description: Invalid token or input } }
+  /me:
+    get: { summary: Current account, responses: { '200': { description: User resource } } }
+  /scholarships:
+    get: { security: [], summary: List published scholarship programs, responses: { '200': { description: Paginated resources } } }
+    post: { summary: Create a scholarship program (admin), responses: { '201': { description: Created }, '403': { $ref: '#/components/responses/Forbidden' } } }
+  /scholarships/{id}:
+    get: { security: [], summary: Scholarship detail, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Program resource } } }
+    put: { summary: Update scholarship program (admin), parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Updated } } }
+  /scholarships/{id}/requirements:
+    get: { security: [], summary: Configured program requirements, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Requirements } } }
+  /student/profile:
+    get: { summary: Own student profile, responses: { '200': { description: Profile } } }
+    put: { summary: Update own student profile, responses: { '200': { description: Updated }, '422': { $ref: '#/components/responses/ValidationError' } } }
+  /student/dashboard:
+    get: { summary: Student dashboard data, responses: { '200': { description: Dashboard data } } }
+  /student/applications:
+    get: { summary: Own applications, responses: { '200': { description: Paginated applications } } }
+    post: { summary: Save a draft or submit an application, responses: { '201': { description: Saved }, '422': { description: Missing required documents or invalid data } } }
+  /student/applications/{id}:
+    get: { summary: Own application detail, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Application } } }
+    put: { summary: Update a draft or correction application, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Updated } } }
+  /student/applications/{id}/submit:
+    post:
+      summary: Submit after validating profile, program, eligibility and requirements
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [declaration]
+              properties:
+                declaration: { type: boolean, enum: [true] }
+      responses: { '200': { description: Submitted or existing submission returned idempotently }, '422': { $ref: '#/components/responses/ValidationError' } }
+  /student/applications/{id}/history:
+    get: { summary: Application status history, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: History } } }
+  /student/applications/{id}/documents:
+    get: { summary: Own application documents, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Documents } } }
+    post:
+      summary: Upload or replace a private document
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data: { schema: { $ref: '#/components/schemas/DocumentUpload' } }
+      responses: { '201': { description: Uploaded }, '422': { $ref: '#/components/responses/ValidationError' } }
+  /staff/applications:
+    get: { summary: Staff application queue, responses: { '200': { description: Paginated applications } } }
+  /staff/applications/{id}/verify-documents:
+    post: { summary: Verify a batch of documents, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Verification saved }, '403': { $ref: '#/components/responses/Forbidden' } } }
+  /staff/applications/{id}/eligibility:
+    post: { summary: Run configured eligibility screening, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Screening result } } }
+  /staff/applications/{id}/evaluation:
+    post: { summary: Record an evaluation, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '201': { description: Saved } } }
+  /staff/applications/{id}/recommendation:
+    post: { summary: Record a staff recommendation, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '201': { description: Saved } } }
+  /staff/applications/{id}/request-correction:
+    post: { summary: Return an application to the student, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Correction requested } } }
+  /admin/dashboard:
+    get: { summary: Database-backed administrator dashboard metrics, responses: { '200': { description: Metrics } } }
+  /admin/users:
+    get: { summary: Paginated user management list, responses: { '200': { description: Users } } }
+  /admin/applications/{id}/decision:
+    post: { summary: Final approve/reject decision, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Decision saved and award created when approved }, '403': { $ref: '#/components/responses/Forbidden' } } }
+  /admin/reports:
+    get: { summary: Application and award report data, responses: { '200': { description: Report data } } }
+  /admin/audit-logs:
+    get: { summary: Paginated audit trail, responses: { '200': { description: Audit records } } }
+  /notifications:
+    get: { summary: Own notifications, responses: { '200': { description: Notifications } } }
+  /notifications/{id}/read:
+    post: { summary: Mark own notification read, parameters: [{ $ref: '#/components/parameters/id' }], responses: { '200': { description: Updated } } }
+  /my-awards:
+    get: { summary: Own scholarship membership status, reasons and appeal history, responses: { '200': { description: Paginated award resources including can_appeal and appeals } } }
+  /my-appeals:
+    get: { summary: Own reinstatement appeals, responses: { '200': { description: Paginated appeal resources } } }
+  /awards/{id}/status:
+    post:
+      summary: Update scholarship membership (administrator only)
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [recipient_status]
+              properties:
+                recipient_status: { type: string, enum: [active, completed, suspended, removed, expired] }
+                status_reason: { type: string, maxLength: 2000, description: Required for removed or suspended; visible to the student. }
+                start_date: { type: string, format: date, nullable: true }
+                end_date: { type: string, format: date, nullable: true }
+                remarks: { type: string, maxLength: 2000, nullable: true }
+      responses: { '200': { description: Award updated and student notified }, '403': { $ref: '#/components/responses/Forbidden' }, '422': { $ref: '#/components/responses/ValidationError' } }
+  /awards/{id}/appeals:
+    post:
+      summary: Request reinstatement of own removed or suspended award
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [statement]
+              properties:
+                statement: { type: string, minLength: 20, maxLength: 5000 }
+      responses: { '201': { description: Appeal submitted; scholarship remains unchanged }, '403': { $ref: '#/components/responses/Forbidden' }, '422': { $ref: '#/components/responses/ValidationError' } }
+  /appeals:
+    get:
+      summary: Administrator appeal review queue
+      parameters: [{ name: status, in: query, schema: { type: string, enum: [submitted, under_review, approved, rejected, closed] } }]
+      responses: { '200': { description: Paginated appeal resources }, '403': { $ref: '#/components/responses/Forbidden' } }
+  /appeals/{id}/decide:
+    post:
+      summary: Administrator appeal decision; approval reinstates the student
+      parameters: [{ $ref: '#/components/parameters/id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string, enum: [under_review, approved, rejected] }
+                decision_reason: { type: string, maxLength: 2000, description: Required for approval or rejection; visible to the student. }
+      responses: { '200': { description: Decision saved and student notified }, '403': { $ref: '#/components/responses/Forbidden' }, '422': { $ref: '#/components/responses/ValidationError' } }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer }
+  parameters:
+    id: { name: id, in: path, required: true, schema: { type: integer } }
+  schemas:
+    RegisterRequest:
+      type: object
+      required: [name, email, contact_number, password, password_confirmation, terms_accepted]
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+        contact_number: { type: string, description: Philippine mobile number normalized to +63 format }
+        password: { type: string, format: password, minLength: 8, maxLength: 72, description: Must contain uppercase and lowercase letters, a number and a symbol. }
+        password_confirmation: { type: string }
+        terms_accepted: { type: boolean }
+        device_name: { type: string }
+    DocumentUpload:
+      type: object
+      required: [document_name, file]
+      properties:
+        document_name: { type: string }
+        scholarship_requirement_id: { type: integer }
+        replace_document_id: { type: integer }
+        file: { type: string, format: binary }
+  responses:
+    Forbidden: { description: Role or ownership check failed }
+    ValidationError: { description: Input validation failed }

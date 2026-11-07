@@ -1,0 +1,35 @@
+# Allow only application/build sources into the image. Local databases, uploads,
+# .env files, backups, browser profiles, and credentials never enter the context.
+**
+!Dockerfile
+!.dockerignore
+!artisan
+!composer.json
+!composer.lock
+!package.json
+!package-lock.json
+!vite.config.js
+!app/
+!app/**
+!bootstrap/
+!bootstrap/**
+!config/
+!config/**
+!database/
+!database/**
+!deploy/
+!deploy/**
+!public/
+!public/**
+!resources/
+!resources/**
+!routes/
+!routes/**
+bootstrap/cache/*.php
+database/*.sqlite*
+database/*.sql
+public/build
+public/hot
+public/storage
+**/.env*
+**/*.log

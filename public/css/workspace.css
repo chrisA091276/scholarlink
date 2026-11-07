@@ -1,0 +1,75 @@
+/* Consistent page header for each scholarship role. */
+.workspace-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 18px 24px; background: #fff; border-bottom: 1px solid #dfe7ef; box-shadow: 0 2px 8px #16355204; }
+.workspace-context { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.workspace-heading { min-width: 0; }
+.workspace-eyebrow { display: block; color: #64758b; font-size: 11px; font-weight: 600; line-height: 1.5; }
+.workspace-eyebrow > span { margin: 0 7px; color: #a8b5c5; }
+.workspace-title { margin-top: 3px; color: #18334f; font-size: 18px; font-weight: 650; line-height: 1.3; letter-spacing: -.3px; overflow-wrap: anywhere; }
+.workspace-actions { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.workspace-date { display: flex; align-items: center; gap: 8px; margin-right: 4px; color: #63748a; font-size: 12px; white-space: nowrap; }
+.workspace-icon-button, .workspace-menu { position: relative; display: grid; place-items: center; flex: 0 0 40px; width: 40px; height: 40px; padding: 0; border: 1px solid #e0e7ef; border-radius: 11px; background: #fff; color: #47617d; font-size: 18px; text-decoration: none; }
+.workspace-icon-button:hover, .workspace-menu:hover { color: #225b93; border-color: #b4c9de; background: #f3f7fb; }
+.workspace-notification-count { position: absolute; top: -6px; right: -6px; min-width: 19px; padding: 1px 4px; border: 2px solid #fff; border-radius: 12px; background: #b43f54; color: #fff; font-size: 10px; font-weight: 700; line-height: 1.3; text-align: center; }
+.workspace-profile { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 2px 12px; border-left: 1px solid #e3e9f1; text-decoration: none; border-radius: 0 8px 8px 0; }
+.workspace-profile:hover { background: #f5f8fc; }
+.workspace-profile .role-avatar { flex-basis: 38px; width: 38px; height: 38px; border-radius: 11px; box-shadow: none; }
+.workspace-profile-copy { min-width: 0; }
+.workspace-profile-copy strong, .workspace-profile-copy small { display: block; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.workspace-profile-copy strong { color: #233d59; font-size: 13px; font-weight: 600; }
+.workspace-profile-copy small { margin-top: 2px; color: #697b90; font-size: 11px; }
+.workspace-logout-form { margin: 0; }
+.workspace-logout:hover { border-color: #e4b6bd; background: #fff5f6; color: #a23c4a; }
+.workspace-menu { display: none; }
+@media (max-width: 1399px) { .workspace-date { display: none; } }
+@media (max-width: 991px) {
+  .workspace-header { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 16px 20px; }
+  .workspace-actions { justify-content: flex-end; }
+  .workspace-title { font-size: 17px; }
+}
+@media (max-width: 767px) {
+  .workspace-header { padding: 14px 16px; gap: 12px; }
+  .workspace-menu { display: grid; }
+  .workspace-actions { gap: 10px; }
+  .workspace-profile { flex: 1; padding-right: 0; }
+  .workspace-profile-copy strong { max-width: 150px; }
+  .workspace-eyebrow { font-size: 10px; }
+  .workspace-icon-button, .workspace-menu { flex-basis: 40px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .workspace-icon-button, .workspace-menu, .workspace-profile { transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease; }
+}
+
+/* Application step navigation: the current step is distinct from earlier steps. */
+.application-progress { margin: 20px 0 24px; padding: 20px; border: 1px solid #dce6f0; border-radius: 14px; background: #f8fafd; }
+.application-progress-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.application-progress-heading strong { color: #233e5b; font-size: 14px; font-weight: 650; }
+.application-progress-heading p { margin: 0; color: #63758c; font-size: 12px; }
+.application-progress-position { display: inline-block; margin-right: 8px; padding: 4px 8px; border-radius: 6px; background: #e7eff8; color: #245487; font-size: 11px; font-weight: 600; }
+.application-progress .wizard-steps { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.application-progress .wizard-step { position: relative; min-width: 0; padding: 10px 4px; border: 1px solid transparent; border-radius: 10px; background: transparent; color: #60738a; text-align: center; }
+.application-progress .wizard-step::before { content: ''; position: absolute; top: 26px; left: calc(-50% - 4px); width: 100%; height: 2px; background: #dce5ef; }
+.application-progress .wizard-step:first-child::before { display: none; }
+.application-progress .wizard-step-number { position: relative; z-index: 1; display: grid; place-items: center; width: 32px; height: 32px; margin: 0 auto 8px; border: 1px solid #ccd8e6; border-radius: 50%; background: #fff; color: #62768f; font-size: 12px; font-weight: 650; box-shadow: 0 0 0 5px #f8fafd; }
+.application-progress .wizard-step-label { position: relative; display: block; font-size: 12px; font-weight: 500; }
+.application-progress .wizard-step.is-previous .wizard-step-number { background: #eaf1fa; border-color: #b5cce3; color: #315e8b; }
+.application-progress .wizard-step.active { color: #193c64; background: #edf3fb; border-color: #b8cfe7; }
+.application-progress .wizard-step.active .wizard-step-number { background: #1c4d80; color: #fff; border-color: #1c4d80; box-shadow: 0 0 0 5px #edf3fb; }
+.application-progress .wizard-step.active .wizard-step-label { font-weight: 700; }
+.application-progress .wizard-step:hover { color: #1c4d80; border-color: #c3d5e7; }
+.application-progress .wizard-step:focus-visible { outline: 3px solid #4384c6; outline-offset: 2px; z-index: 2; }
+.review-box { border: 1px solid #e5e8ef; border-radius: 12px; overflow: hidden; }
+.review-box > div { display: flex; justify-content: space-between; gap: 16px; padding: .75rem 1rem; border-bottom: 1px solid #e5e8ef; }
+.review-box > div:last-child { border-bottom: 0; }
+.review-box span { color: #6b768e; }
+@media (max-width: 991px) {
+  .application-progress .wizard-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .application-progress .wizard-step::before { display: none; }
+}
+@media (max-width: 575px) {
+  .application-progress { padding: 14px; }
+  .application-progress .wizard-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .application-progress .wizard-step { display: flex; align-items: center; gap: 8px; min-width: 0 !important; padding: 8px; text-align: left; }
+  .application-progress .wizard-step-number { flex: 0 0 28px; width: 28px; height: 28px; margin: 0; box-shadow: none; }
+  .application-progress .wizard-step.active .wizard-step-number { box-shadow: none; }
+  .application-progress .wizard-step-label { font-size: 11px; }
+}

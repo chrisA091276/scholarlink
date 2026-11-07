@@ -1,0 +1,50 @@
+/* Shared academic presentation and accessible, restrained interaction. */
+:root { --academic-blue: #12335b; --academic-sky: #eaf3fb; --academic-gold: #b28b2f; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; }
+:focus-visible { outline: 3px solid #4590ce; outline-offset: 3px; }
+.form-control, .form-select { min-height: 44px; }
+.card, .student-surface, .student-form-card { border: 1px solid #e1e7ef; }
+.sidebar { background: #102d50 !important; }
+.sidebar .nav-link.active { background: #24466d !important; }
+.ops-dashboard .ops-hero { min-height: 170px; box-shadow: none; }
+.ops-dashboard .ops-hero:before, .ops-dashboard .ops-hero:after { display: none; }
+.ops-dashboard .ops-page-head h1 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.ops-dashboard .ops-stat:hover, .card-hover:hover, .stat-card:hover,
+.ops-dashboard .ops-panel:hover, .ops-dashboard .ops-hero-metric:hover { transform: none !important; }
+.dashboard-reveal, .page-enter, .reveal, .logo-float, .float-animation { animation: none !important; opacity: 1 !important; transform: none !important; }
+.hero-bg, .hero-bg::before, .hero-bg::after { animation: none !important; }
+.auth-page { background: #102d50 !important; }
+.auth-page::before { animation: none !important; opacity: .08 !important; }
+.auth-page::after { background: none !important; }
+.auth-page .auth-card { background: #fff; color: #17304e; border: 1px solid #dce5ef; border-radius: 16px; box-shadow: 0 8px 30px #071a3033; backdrop-filter: none; }
+.auth-page .auth-card .text-muted, .auth-page .auth-card .form-text { color: #53677d !important; }
+.auth-page .auth-card .form-label, .auth-page .auth-card .form-check-label { color: #253b54; }
+.auth-page .auth-card .form-control, .auth-page .auth-card .input-group-text { background: #fff; border-color: #b8c7d8; color: #17304e; }
+.auth-page .auth-card .form-control::placeholder { color: #65788c; }
+.auth-page .auth-card .form-control:focus { border-color: #3984c0; box-shadow: 0 0 0 3px #3984c026; }
+.auth-page .auth-card .input-group-text { background: #f3f7fb; }
+.auth-page .auth-card a { color: #1a5f9b; }
+.auth-page .auth-card a:hover { color: #12335b; }
+.auth-page .auth-card .btn-outline-secondary { color: #365373; border-color: #b8c7d8; }
+.auth-page .auth-card .btn-outline-secondary:hover { background: #eaf3fb; }
+.auth-page .auth-mode-switch { background: #f0f4f8; border-color: #dce5ef; }
+.auth-page .mode-btn { color: #4a617b; transition: background-color .15s; }
+.auth-page .mode-btn.active { color: #12335b; background: #fff; border: 1px solid #cfdae6 !important; box-shadow: 0 1px 3px #102d5010; }
+.auth-page .mode-btn.active i { color: #12335b; }
+.auth-page .auth-card .role-tab { border-color: #c6d5e4; color: #3c5570; }
+.auth-page .auth-card .role-tab.active { color: #12335b; background: #eaf3fb; border-color: #3984c0; }
+.auth-page .auth-card .form-check-input { background-color: #fff; border-color: #849bb3; }
+.auth-page .auth-card .form-check-input:checked { background-color: #12335b; }
+.auth-page .auth-card .demo-box, .auth-page .auth-card .demo-box code { color: #53677d; }
+.auth-page .btn-gold { background: #12335b; border-color: #12335b; color: #fff; }
+.auth-page .btn-gold:hover { background: #1b4c80; border-color: #1b4c80; color: #fff; }
+.auth-page .auth-card .invalid-feedback { color: #b4232c; }
+@media (max-width: 575px) {
+  .wizard-step { min-width: 75px !important; }
+  #applicationWizard > .d-flex:last-child > div { width: 100%; flex-wrap: wrap; }
+  #applicationWizard > .d-flex:last-child button { flex: 1; min-height: 44px; }
+  .auth-page .auth-card .card-body { padding: 24px 18px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

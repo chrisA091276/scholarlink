@@ -1,0 +1,190 @@
+/* Shared responsive rules, loaded after the page-specific styles. */
+.app-layout { display: grid; grid-template-columns: 252px minmax(0, 1fr); }
+.app-layout > .sidebar, .app-layout > .app-main { width: 100%; max-width: 100%; min-width: 0; }
+.app-main, .app-content { min-width: 0; overflow-wrap: anywhere; }
+.app-content :is(.row > *, .card, .card-body, .student-page, .student-surface, .student-form-card) { min-width: 0; }
+.app-content :is(.d-flex, .student-toolbar) > * { min-width: 0; }
+.app-content :is(input, select, textarea) { max-width: 100%; }
+.app-content :is(.table-responsive, .table-scroll-region) { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+.table-scroll-region:focus-visible { outline: 3px solid #4384c6; outline-offset: -3px; }
+.app-content :is(.table, .form-workspace-table, .scholar-table) { overflow-wrap: normal; }
+.app-content .table :is(th, td) { vertical-align: middle; }
+.app-content pre { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; }
+.app-content .badge { white-space: normal; text-align: left; line-height: 1.4; }
+.page-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.filter-toolbar { display: flex; flex: 1; flex-wrap: wrap; gap: 8px; }
+.filter-toolbar > :is(input, select) { flex: 1 1 140px; width: auto; }
+.filter-toolbar > button { flex: 0 0 auto; }
+.document-verification-form { min-width: 240px; flex-wrap: wrap; }
+.document-verification-form > :is(input, select) { flex: 1 1 160px; width: auto; }
+.app-shell .workspace-icon-button, .app-shell .workspace-menu { width: 44px; height: 44px; flex-basis: 44px; }
+.dashboard-action-label { display: none; }
+.dashboard-cell-value { min-width: 0; }
+
+/* Account for the desktop sidebar before splitting dashboard content. */
+@media (min-width: 992px) and (max-width: 1279.98px) {
+  .role-dashboard :is(.form-workspace-grid, .scholar-content-grid) { grid-template-columns: minmax(0, 1fr); }
+  .role-dashboard :is(.form-workspace-aside, .scholar-aside) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .role-dashboard .scholar-updates { grid-column: 1 / -1; }
+  .role-dashboard .scholar-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scholar-metrics .dashboard-metric:nth-child(2)::after { display: none; }
+  .scholar-metrics .dashboard-metric:nth-child(-n+2) { border-bottom: 1px solid var(--sh-line); }
+}
+
+@media (min-width: 992px) {
+  .app-shell .sidebar { position: sticky; height: 100vh; height: 100dvh; }
+  .app-shell .sidebar-close, .app-shell .workspace-menu, .app-shell #sidebarBackdrop { display: none; }
+}
+
+@media (max-width: 1199.98px) {
+  .app-shell .workspace-header { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .app-shell .workspace-actions { justify-content: flex-end; }
+  .app-content .student-toolbar { flex-wrap: wrap; }
+  .app-content .student-toolbar > .flex-grow-1 { flex-basis: 100%; }
+}
+
+@media (max-width: 991.98px) {
+  .app-layout { display: block; }
+  .app-shell .sidebar {
+    position: fixed; inset: 0 auto 0 0; z-index: 1050;
+    width: 286px; max-width: calc(100vw - 32px);
+    height: 100vh; height: 100dvh; min-height: 0 !important;
+    padding: 18px 16px max(18px, env(safe-area-inset-bottom)) !important;
+    transform: translateX(-105%); visibility: hidden;
+    transition: transform .22s ease, visibility .22s ease;
+    overflow-y: auto; overscroll-behavior: contain;
+    box-shadow: 16px 0 36px #040e1f47;
+  }
+  .app-shell.sidebar-open { overflow: hidden; }
+  .app-shell.sidebar-open .sidebar { visibility: visible; transform: translateX(0); }
+  .app-shell .sidebar-close { display: grid; place-items: center; width: 44px; height: 44px; flex: 0 0 44px; }
+  .app-shell .sidebar .nav-link { min-height: 44px; }
+  .app-shell .workspace-menu { display: grid; }
+  .app-shell #sidebarBackdrop {
+    display: block; position: fixed; inset: 0; z-index: 1040;
+    background: #0511247a; opacity: 0; visibility: hidden;
+    transition: opacity .22s ease, visibility .22s ease;
+  }
+  .app-shell.sidebar-open #sidebarBackdrop { opacity: 1; visibility: visible; }
+  .app-shell .workspace-header { position: relative; padding: 16px 20px; }
+  .app-shell .workspace-context { gap: 10px; }
+  .app-content { padding: 20px !important; }
+  .app-content :is(.btn, .page-link) { min-height: 44px; align-content: center; }
+  .app-content :is(.form-control, .form-select, .student-filter),
+  .auth-split-page .form-control, .auth-page .form-control { font-size: 16px; min-height: 44px; }
+  .app-content .form-check-input { width: 1.2em; height: 1.2em; }
+  .app-content .form-check-label { padding-block: 4px; }
+  .app-content .table :is(th, td) { padding: 12px; }
+  .app-content .table-responsive > .table { min-width: 560px; }
+  .app-content .table-scroll-region > table { min-width: 560px; }
+  .app-content .table :is(.form-select, .form-control) { min-width: 160px; }
+  .role-dashboard :is(.sh-button, .sh-text-link, .sh-profile-button, .scholar-hero-secondary,
+    .form-quick-link, .adfc-paper-heading > a, .scholar-checklists > summary, .form-evidence-details > summary) { min-height: 44px; align-content: center; }
+  .role-dashboard .sh-icon-link { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
+  .role-dashboard .scholar-video-toggle { min-height: 44px; font-size: 12px; }
+  .role-dashboard .form-workspace-head { align-items: flex-start; flex-wrap: wrap; }
+}
+
+/* Dashboard records become labelled cards; other data tables keep local scrolling. */
+@media (max-width: 767.98px) {
+  .role-dashboard .dashboard-records { display: block; min-width: 0; }
+  .role-dashboard .dashboard-records thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .role-dashboard .dashboard-records th { display: table-cell; }
+  .role-dashboard .dashboard-records :is(tbody, tr) { display: block; width: 100%; }
+  .role-dashboard .dashboard-records tr { padding: 16px; border-bottom: 1px solid #e3e9ed; }
+  .role-dashboard .dashboard-records tr:last-child { border-bottom: 0; }
+  .role-dashboard .dashboard-records td { display: block; width: 100%; padding: 6px 0; border: 0; font-size: 13px; white-space: normal; overflow-wrap: anywhere; }
+  .role-dashboard .dashboard-records td[data-label] { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; gap: 12px; }
+  .role-dashboard .dashboard-records td[data-label]::before { content: attr(data-label); color: #63748a; font-size: 12px; font-weight: 600; }
+  .role-dashboard .dashboard-records .dashboard-record-title { padding: 0 0 12px; margin-bottom: 6px; border-bottom: 1px solid #edf1f5; }
+  .role-dashboard .dashboard-records strong { min-width: 0; font-size: 14px; }
+  .role-dashboard .dashboard-records small { font-size: 12px; }
+  .role-dashboard .dashboard-records :is(.adfc-badge, .sh-status) { max-width: 100%; font-size: 12px; white-space: normal; text-transform: capitalize; }
+  .role-dashboard .dashboard-records .scholar-table-date { font-size: 12px !important; }
+  .role-dashboard .dashboard-records .form-evidence-details { min-width: 0; }
+  .role-dashboard .dashboard-records .form-evidence-details :is(summary, li) { font-size: 12px; }
+  .role-dashboard .dashboard-records .dashboard-record-action { padding: 12px 0 0; }
+  .role-dashboard .dashboard-record-action > a { display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; min-height: 44px; font-size: 13px; }
+  .role-dashboard .dashboard-action-label { display: inline; }
+  .role-dashboard .dashboard-records td[colspan] { padding: 0; }
+  .role-dashboard .dashboard-records :is(.form-empty, .scholar-empty) { padding: 20px 8px; }
+  .role-dashboard .form-workspace-aside { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 575.98px) {
+  .app-content { padding: 16px 12px !important; }
+  .app-shell .workspace-header { padding: 14px 12px; }
+  .app-shell .workspace-title { font-size: 17px; }
+  .app-shell .workspace-eyebrow { font-size: 10px; }
+  .app-shell .workspace-actions { gap: 8px; }
+  .app-shell .workspace-profile { flex: 1; padding-inline: 8px; }
+  .app-shell .workspace-profile-copy strong { max-width: 100%; }
+  .app-content :is(.student-section-title, .student-surface-head, .ops-panel-head,
+    .sh-panel-head, .review-box > div) { flex-wrap: wrap; gap: 10px; }
+  .app-content :is(.card-body > .d-flex.justify-content-between,
+    .student-page > .d-flex.justify-content-between) { flex-wrap: wrap; gap: 10px; }
+  .app-content .row > .d-flex { flex-wrap: wrap; }
+  .app-content .student-toolbar { padding: 14px; }
+  .app-content .student-toolbar > * { width: 100%; }
+  .app-content .student-toolbar > .flex-grow-1 { flex-basis: auto; }
+  .page-toolbar { align-items: stretch; }
+  .page-toolbar > .filter-toolbar { flex-basis: 100%; }
+  .filter-toolbar > :is(input, select) { flex-basis: 100%; width: 100%; }
+  .page-toolbar > .btn, .filter-toolbar > button { width: 100%; }
+  .app-content .review-box > div > * { flex-basis: 100%; }
+  .app-content .stepper { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .app-content .stp { min-width: 0; white-space: normal; }
+  .app-content .stp .dot { flex-shrink: 0; }
+  .app-content .stp-line { display: none; }
+  .app-content .student-table td { flex-wrap: wrap; overflow-wrap: anywhere; }
+  .app-content .student-table td::before { flex-shrink: 0; }
+  .app-content .student-table .btn { white-space: normal; }
+  .app-content .status-chip { white-space: normal; }
+  .app-content .adfc-section-icon { flex-shrink: 0; }
+  .app-content .adfc-form-masthead .adfc-photo-placeholder { flex-basis: 100%; }
+  .app-content .form-section-progress > div { min-width: 0; }
+  .app-content .scholar-journey li { text-align: center; }
+  .app-content .scholar-row-link, .app-content .sh-profile-link { min-width: 44px; min-height: 44px; }
+  .auth-split-page .auth-form-footer { flex-wrap: wrap; gap: 12px; }
+  .auth-split-page .auth-brand > span { min-width: 0; }
+  .auth-split-page .auth-brand small { overflow-wrap: anywhere; }
+  .auth-page { padding-block: 24px !important; }
+  .role-dashboard .form-workspace-head > .d-flex { width: 100%; }
+  .role-dashboard .form-workspace-head > .d-flex > .btn { flex: 1; }
+  .role-dashboard .form-workspace-head > .btn { width: 100%; }
+  .role-dashboard .form-workflow span { font-size: 12px; }
+  .role-dashboard :is(.sh-text-link, .scholar-hero-secondary, .sh-profile-button,
+    .scholar-hero-copy > p, .scholar-next-action p, .scholar-checklists > summary,
+    .scholar-upload-note, .sh-profile-description, .scholar-update p, .scholar-announcement p,
+    .scholar-deadline p, .scholar-opportunity-body p) { font-size: 13px; }
+  .role-dashboard :is(.scholar-next-action strong, .scholar-update strong) { font-size: 14px; }
+  .role-dashboard .scholar-heading .sh-profile-link { font-size: 0; }
+  .role-dashboard .scholar-hero-copy { padding-bottom: 68px; }
+  .role-dashboard .scholar-hero-actions { gap: 8px; }
+  .role-dashboard .scholar-metrics .dashboard-metric-label { font-size: 12px; }
+  .role-dashboard .scholar-metrics .dashboard-metric-hint { font-size: 11px; }
+  .role-dashboard .dashboard-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .role-dashboard .dashboard-metric { padding: 14px; }
+  .role-dashboard .dashboard-metric-heading { flex-direction: column-reverse; align-items: flex-start; gap: 10px; }
+  .role-dashboard .dashboard-metric-heading .dashboard-metric-icon { width: 30px; }
+  .role-dashboard .scholar-metrics { gap: 0; }
+  .role-dashboard .scholar-metrics .dashboard-metric { grid-template-columns: minmax(0, 1fr) auto; }
+  .role-dashboard .scholar-metrics .dashboard-metric-label { grid-column: 1 / -1; padding-top: 36px; }
+  .role-dashboard .scholar-metrics .dashboard-metric-icon { grid-area: 1 / 1; align-self: start; margin: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .sidebar, .app-shell #sidebarBackdrop { transition: none; }
+}
+
+@media (max-width: 379.98px) {
+  .application-progress .wizard-step { flex-direction: column; text-align: center; gap: 6px; }
+  .application-progress .wizard-step-label { overflow-wrap: normal; }
+}
+
+@media print {
+  .app-layout { display: block; }
+  .app-shell :is(.sidebar, .workspace-header, #sidebarBackdrop) { display: none !important; }
+  .app-content :is(.table-responsive, .table-scroll-region) { overflow: visible; }
+  .app-content :is(.table-responsive, .table-scroll-region) > table { min-width: 0; }
+}

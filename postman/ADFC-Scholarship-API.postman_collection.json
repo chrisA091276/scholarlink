@@ -1,0 +1,358 @@
+{
+  "info": {
+    "name": "ADFC Scholarship System — Collection",
+    "description": "Main flows. Web routes use session auth: GET /login first to get session + CSRF (_token), then POST. Sample payloads included.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Show login page",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/login"
+          }
+        },
+        {
+          "name": "Login (admin)",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/login",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email",
+                  "value": "admin@adfc.edu.ph"
+                },
+                {
+                  "key": "password",
+                  "value": "Admin123!"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Register (choose role student|staff|admin)",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/register",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "New Student"
+                },
+                {
+                  "key": "email",
+                  "value": "new@student.ph"
+                },
+                {
+                  "key": "password",
+                  "value": "Password123"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "Password123"
+                },
+                {
+                  "key": "role",
+                  "value": "student"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Dashboard (role-based)",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/dashboard"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Scholarships",
+      "item": [
+        {
+          "name": "Browse open",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/scholarships"
+          }
+        },
+        {
+          "name": "Program details",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/scholarships/1"
+          }
+        },
+        {
+          "name": "Admin: create program",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/manage-scholarships",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "code",
+                  "value": "ADFC-TEST-2026"
+                },
+                {
+                  "key": "name",
+                  "value": "Test Grant"
+                },
+                {
+                  "key": "category",
+                  "value": "Merit"
+                },
+                {
+                  "key": "status",
+                  "value": "published"
+                },
+                {
+                  "key": "deadline",
+                  "value": "2026-12-31"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Applications",
+      "item": [
+        {
+          "name": "Student: submit application",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/my-applications",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "scholarship_program_id",
+                  "value": "1"
+                },
+                {
+                  "key": "academic_year",
+                  "value": "2026-2027"
+                },
+                {
+                  "key": "enrollment_status",
+                  "value": "enrolled"
+                },
+                {
+                  "key": "statement",
+                  "value": "I deserve this scholarship."
+                },
+                {
+                  "key": "action",
+                  "value": "submit"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Staff/Admin: list applications",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/applications?status=submitted"
+          }
+        },
+        {
+          "name": "Staff: update status",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/applications/1/status",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "to_status",
+                  "value": "under_review"
+                },
+                {
+                  "key": "remarks",
+                  "value": "Checking documents"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Staff: save evaluation",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/applications/1/evaluate",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "score",
+                  "value": "88"
+                },
+                {
+                  "key": "recommendation",
+                  "value": "recommended_approval"
+                },
+                {
+                  "key": "evaluation_notes",
+                  "value": "Strong academics, complete docs."
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Admin: final decision (creates award)",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/applications/1/status",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "to_status",
+                  "value": "approved"
+                },
+                {
+                  "key": "remarks",
+                  "value": "Congratulations!"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents & Screening",
+      "item": [
+        {
+          "name": "Upload document (multipart)",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/applications/1/documents",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "document_name",
+                  "value": "Report Card"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C/card.pdf"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify document",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/applications/1/documents/1/verify",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "verification_status",
+                  "value": "verified"
+                },
+                {
+                  "key": "verification_notes",
+                  "value": "OK"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Run eligibility screening",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/applications/1/screen"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Awards, Renewals, Reports",
+      "item": [
+        {
+          "name": "List awards",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/awards"
+          }
+        },
+        {
+          "name": "Decide renewal",
+          "request": {
+            "method": "POST",
+            "url": "{{base}}/renewals/1/decide",
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "status",
+                  "value": "approved"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Reports + CSV export",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/reports?export=csv"
+          }
+        },
+        {
+          "name": "Audit logs (admin)",
+          "request": {
+            "method": "GET",
+            "url": "{{base}}/audit-logs"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
